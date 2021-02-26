@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
+    "axios": "^0.21.1",
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
     "pre-commit": "^1.2.2",
@@ -32,6 +33,7 @@
     "prettier:write": "prettier --write src/*"
   },
   "pre-commit": [
+    "prettier:check",
     "lint"
   ],
   "eslintConfig": {
