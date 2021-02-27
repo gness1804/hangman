@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 } from 'uuid';
-import WordLine from './WordLine';
+import WordLine from '../WordLine';
 
 const Main = () => {
   const [word, setWord] = useState('');
