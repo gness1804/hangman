@@ -28,15 +28,16 @@ const Main = () => {
       const {
         data: { word },
       } = res;
-      setWord(word);
+      setWord(word.toLowerCase());
     } catch (error) {
       return undefined;
     }
   };
 
   const verifyLetter = (): void => {
-    if (word.includes(letter)) setSuccessfulLetters((arr) => [...arr, letter]);
-    else setFailedLetters((arr) => [...arr, letter]);
+    if (word.includes(letter))
+      setSuccessfulLetters((arr) => [...arr, letter.toLowerCase()]);
+    else setFailedLetters((arr) => [...arr, letter.toLowerCase()]);
     setLetter('');
   };
 
@@ -48,6 +49,10 @@ const Main = () => {
       successfulLetters.length === word.length
     )
       alert('You win!');
+  };
+
+  const handleKeydown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') verifyLetter();
   };
 
   return (
@@ -66,11 +71,12 @@ const Main = () => {
             size={1}
             minLength={1}
             maxLength={1}
-            onChange={(e) => setLetter(e.target.value)}
+            onChange={(e) => setLetter(e.target.value.toLowerCase())}
+            onKeyDown={(e) => handleKeydown(e)}
             value={letter}
           />
           <button onClick={verifyLetter}>Verify Letter</button>
-          {failedLetters.map((_letter) => (
+          {failedLetters.sort().map((_letter) => (
             <div key={v4()}>{_letter}</div>
           ))}
         </div>
