@@ -11,6 +11,8 @@ const Main = () => {
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
   const [failedLetters, setFailedLetters] = useState<string[]>([]);
 
+  const totalGuesses = 6;
+
   useEffect(() => {
     getWord();
   }, []);
@@ -36,6 +38,10 @@ const Main = () => {
   };
 
   const verifyLetter = (): void => {
+    if (!letter) {
+      alert('Error: you must enter a letter.');
+      return;
+    }
     if (word.includes(letter))
       setSuccessfulLetters((arr) => [...arr, letter.toLowerCase()]);
     else setFailedLetters((arr) => [...arr, letter.toLowerCase()]);
@@ -44,7 +50,10 @@ const Main = () => {
 
   const checkGameStatus = (): void => {
     if (loading) return;
-    if (failedLetters.length > 6) alert('You lose!');
+    if (failedLetters.length > totalGuesses) {
+      alert(`You lose! The word was: ${word}.`);
+      return;
+    }
     if (
       successfulLetters.length > 0 &&
       successfulLetters.length === word.length
@@ -65,6 +74,7 @@ const Main = () => {
       )}
       {!loading && (
         <div>
+          <p>You have {totalGuesses - failedLetters.length} guesses left.</p>
           <div className="main-inputs-container">
             <label
               htmlFor="letterInput"
@@ -90,9 +100,12 @@ const Main = () => {
               Verify Letter
             </button>
           </div>
-          {failedLetters.sort().map((_letter) => (
-            <div key={v4()}>{_letter}</div>
-          ))}
+          <p>Failed Letters:</p>
+          <div className="main-failed-letters-container">
+            {failedLetters.sort().map((_letter) => (
+              <div key={v4()}>{_letter}</div>
+            ))}
+          </div>
         </div>
       )}
     </div>
