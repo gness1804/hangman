@@ -1,0 +1,7 @@
+.word-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 60vw;
+  margin: 0 auto 4rem;
+}

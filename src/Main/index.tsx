@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
+import './index.css';
 
 const Main = () => {
   const [word, setWord] = useState('');
@@ -56,7 +57,7 @@ const Main = () => {
   };
 
   return (
-    <div>
+    <div className="main">
       {loading ? (
         <p>Retrieving your word...</p>
       ) : (
@@ -64,18 +65,31 @@ const Main = () => {
       )}
       {!loading && (
         <div>
-          <label htmlFor="letterInput">Enter a letter:</label>
-          <input
-            id="letterInput"
-            type="text"
-            size={1}
-            minLength={1}
-            maxLength={1}
-            onChange={(e) => setLetter(e.target.value.toLowerCase())}
-            onKeyDown={(e) => handleKeydown(e)}
-            value={letter}
-          />
-          <button onClick={verifyLetter}>Verify Letter</button>
+          <div className="main-inputs-container">
+            <label
+              htmlFor="letterInput"
+              className="main-inputs-container-label"
+            >
+              Enter a letter:
+            </label>
+            <input
+              id="letterInput"
+              type="text"
+              className="main-inputs-container-input-field"
+              size={1}
+              minLength={1}
+              maxLength={1}
+              onChange={(e) => setLetter(e.target.value.toLowerCase())}
+              onKeyDown={(e) => handleKeydown(e)}
+              value={letter}
+            />
+            <button
+              onClick={verifyLetter}
+              className="main-inputs-container-verify-button"
+            >
+              Verify Letter
+            </button>
+          </div>
           {failedLetters.sort().map((_letter) => (
             <div key={v4()}>{_letter}</div>
           ))}

@@ -1,0 +1,17 @@
+.main-inputs-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 60vw;
+  align-items: center;
+}
+
+.main-inputs-container-label,
+.main-inputs-container-input-field {
+  margin-bottom: 1rem;
+}
+
+.main-inputs-container-verify-button,
+.main-inputs-container-input-field {
+  width: 50%;
+}

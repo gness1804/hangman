@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 } from 'uuid';
+import './index.css';
 
 interface Props {
   word: string;
@@ -8,7 +9,7 @@ interface Props {
 
 const WordLine = ({ word, successfulLetters }: Props) => {
   return (
-    <div>
+    <div className="word-line">
       {word.split('').map((letter) => {
         if (successfulLetters.includes(letter)) {
           return <div key={v4()}>{letter}</div>;
