@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
@@ -7,7 +7,7 @@ import './index.css';
 
 interface Props {
   word: string;
-  setWord: Function;
+  setWord: Dispatch<SetStateAction<string>>;
   totalGuesses: number;
 }
 
@@ -20,6 +20,11 @@ const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
 
   useEffect(() => {
     getWord();
+    return () => {
+      setWord('');
+      setFailedLetters([]);
+      setSuccessfulLetters([]);
+    };
   }, []);
 
   useEffect(() => {
@@ -113,6 +118,9 @@ const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
             ))}
           </div>
           <button onClick={getWord}>New Word</button>
+          <Link className="main-options-link" to="/options">
+            Options
+          </Link>
         </div>
       )}
     </div>

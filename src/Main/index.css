@@ -22,6 +22,10 @@
   margin: 2rem 0 6rem;
 }
 
+.main-options-link {
+  display: block;
+}
+
 @media (min-width: 750px) {
   .main-inputs-container {
     flex-direction: row;
