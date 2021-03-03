@@ -5,15 +5,18 @@ import { v4 } from 'uuid';
 import WordLine from '../WordLine';
 import './index.css';
 
-const Main = () => {
-  const [word, setWord] = useState('');
+interface Props {
+  word: string;
+  setWord: Function;
+  totalGuesses: number;
+}
+
+const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
   const [failedLetters, setFailedLetters] = useState<string[]>([]);
   const history = useHistory();
-
-  const totalGuesses = 6;
 
   useEffect(() => {
     getWord();
@@ -34,6 +37,8 @@ const Main = () => {
         data: { word },
       } = res;
       setWord(word.toLowerCase());
+      setFailedLetters([]);
+      setSuccessfulLetters([]);
     } catch (error) {
       return undefined;
     }
@@ -52,13 +57,14 @@ const Main = () => {
 
   const checkGameStatus = (): void => {
     if (loading) return;
-    if (failedLetters.length > totalGuesses) {
-      alert(`You lose! The word was: ${word}.`);
+    if (failedLetters.length >= totalGuesses) {
+      history.push('defeat');
     } else if (
       successfulLetters.length > 0 &&
       successfulLetters.length === word.length
-    )
+    ) {
       history.push('/victory');
+    }
   };
 
   const handleKeydown = (e: React.KeyboardEvent) => {
