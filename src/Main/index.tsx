@@ -106,6 +106,7 @@ const Main = () => {
               <div key={v4()}>{_letter}</div>
             ))}
           </div>
+          <button onClick={getWord}>New Word</button>
         </div>
       )}
     </div>
