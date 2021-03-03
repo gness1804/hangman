@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
@@ -10,6 +11,7 @@ const Main = () => {
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
   const [failedLetters, setFailedLetters] = useState<string[]>([]);
+  const history = useHistory();
 
   const totalGuesses = 6;
 
@@ -52,13 +54,11 @@ const Main = () => {
     if (loading) return;
     if (failedLetters.length > totalGuesses) {
       alert(`You lose! The word was: ${word}.`);
-      return;
-    }
-    if (
+    } else if (
       successfulLetters.length > 0 &&
       successfulLetters.length === word.length
     )
-      alert('You win!');
+      history.push('/victory');
   };
 
   const handleKeydown = (e: React.KeyboardEvent) => {
