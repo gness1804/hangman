@@ -116,7 +116,9 @@ const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
               <div key={v4()}>{_letter}</div>
             ))}
           </div>
-          <button onClick={getWord}>New Word</button>
+          <button onClick={getWord} className="main-new-word-button">
+            New Word
+          </button>
           <Link className="main-options-link" to="/options">
             Options
           </Link>
