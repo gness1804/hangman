@@ -21,7 +21,6 @@ const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
   useEffect(() => {
     getWord();
     return () => {
-      setWord('');
       setFailedLetters([]);
       setSuccessfulLetters([]);
     };

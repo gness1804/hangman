@@ -10,7 +10,7 @@ function App() {
   const [word, setWord] = useState('');
   // const [maxWordLength, setMaxWordLength] = useState(null);
   const [totalGuesses, setTotalGuesses] = useState(6);
-  // TODO: fix bug with losing leading to defeat screen with blank word
+
   return (
     <Router>
       <div className="App">
