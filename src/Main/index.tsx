@@ -9,9 +9,15 @@ interface Props {
   word: string;
   setWord: Dispatch<SetStateAction<string>>;
   totalGuesses: number;
+  maxWordLength: number;
 }
 
-const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
+const Main = ({
+  word,
+  setWord,
+  totalGuesses = 6,
+  maxWordLength = 6,
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
@@ -34,7 +40,8 @@ const Main = ({ word, setWord, totalGuesses = 6 }: Props) => {
     try {
       setLoading(true);
       const res = await axios.get(
-        process.env.WORD_ENDPOINT || 'http://localhost:8080',
+        process.env.WORD_ENDPOINT ||
+          `http://localhost:8080?maxWordLength=${maxWordLength}`,
       );
       setLoading(false);
       const {

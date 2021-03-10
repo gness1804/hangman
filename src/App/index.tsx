@@ -8,7 +8,7 @@ import './index.css';
 
 function App() {
   const [word, setWord] = useState('');
-  // const [maxWordLength, setMaxWordLength] = useState(null);
+  const [maxWordLength, setMaxWordLength] = useState(6);
   const [totalGuesses, setTotalGuesses] = useState(6);
 
   return (
@@ -28,10 +28,17 @@ function App() {
             <Options
               totalGuesses={totalGuesses}
               setTotalGuesses={setTotalGuesses}
+              maxWordLength={maxWordLength}
+              setMaxWordLength={setMaxWordLength}
             />
           </Route>
           <Route path="/">
-            <Main word={word} setWord={setWord} totalGuesses={totalGuesses} />
+            <Main
+              word={word}
+              setWord={setWord}
+              totalGuesses={totalGuesses}
+              maxWordLength={maxWordLength}
+            />
           </Route>
         </Switch>
       </div>

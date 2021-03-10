@@ -1,4 +1,9 @@
-.options-main-label {
+.options-total-guesses-container {
+  margin-bottom: 1rem;
+}
+
+.options-total-guesses-label,
+.options-max-word-length-label {
   margin-right: 1rem;
 }
 
