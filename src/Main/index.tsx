@@ -12,12 +12,7 @@ interface Props {
   maxWordLength: number;
 }
 
-const Main = ({
-  word,
-  setWord,
-  totalGuesses = 6,
-  maxWordLength = 6,
-}: Props) => {
+const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   const [loading, setLoading] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
@@ -60,13 +55,17 @@ const Main = ({
       alert('Error: you must enter a letter.');
       return;
     }
-    if (word.includes(letter))
+    if (word.includes(letter)) {
       setSuccessfulLetters((arr) => [...arr, letter.toLowerCase()]);
-    else setFailedLetters((arr) => [...arr, letter.toLowerCase()]);
+    } else if (failedLetters.includes(letter)) {
+      alert('Oops! You have already guessed this letter. Please try again.');
+      setLetter('');
+    } else setFailedLetters((arr) => [...arr, letter.toLowerCase()]);
     setLetter('');
   };
 
   const checkGameStatus = (): void => {
+    // TODO: implement Cypress
     if (loading) return;
     if (failedLetters.length >= totalGuesses) {
       history.push('defeat');
