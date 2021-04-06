@@ -21,8 +21,8 @@ const Options = ({
   };
 
   return (
-    <div>
-      <h2 className="options">Set Options</h2>
+    <div className="options">
+      <h2>Set Options</h2>
       <div className="options-total-guesses-container">
         <label htmlFor="totalGuesses" className="options-total-guesses-label">
           Total Guesses

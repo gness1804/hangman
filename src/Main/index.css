@@ -1,3 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-top-items-container {
+  margin-bottom: 3rem;
+}
+
 .main-inputs-container {
   display: flex;
   flex-direction: column;
@@ -11,7 +20,6 @@
   margin-bottom: 1rem;
 }
 
-.main-inputs-container-verify-button,
 .main-inputs-container-input-field {
   width: 50%;
 }
@@ -19,7 +27,7 @@
 .main-failed-letters-container {
   display: flex;
   justify-content: center;
-  margin: 2rem 0 6rem;
+  margin: 2rem 0;
 }
 
 .main-new-word-button {
@@ -35,7 +43,6 @@
     flex-direction: row;
   }
 
-  .main-inputs-container-verify-button,
   .main-inputs-container-input-field {
     width: auto;
   }

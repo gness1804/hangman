@@ -17,30 +17,32 @@ function App() {
         <header className="App-header">
           <h1>Hangman!</h1>
         </header>
-        <Switch>
-          <Route path="/victory">
-            <Victory />
-          </Route>
-          <Route path="/defeat">
-            <Defeat word={word} />
-          </Route>
-          <Route path="/options">
-            <Options
-              totalGuesses={totalGuesses}
-              setTotalGuesses={setTotalGuesses}
-              maxWordLength={maxWordLength}
-              setMaxWordLength={setMaxWordLength}
-            />
-          </Route>
-          <Route path="/">
-            <Main
-              word={word}
-              setWord={setWord}
-              totalGuesses={totalGuesses}
-              maxWordLength={maxWordLength}
-            />
-          </Route>
-        </Switch>
+        <div className="core-component">
+          <Switch>
+            <Route path="/victory">
+              <Victory />
+            </Route>
+            <Route path="/defeat">
+              <Defeat word={word} />
+            </Route>
+            <Route path="/options">
+              <Options
+                totalGuesses={totalGuesses}
+                setTotalGuesses={setTotalGuesses}
+                maxWordLength={maxWordLength}
+                setMaxWordLength={setMaxWordLength}
+              />
+            </Route>
+            <Route path="/">
+              <Main
+                word={word}
+                setWord={setWord}
+                totalGuesses={totalGuesses}
+                maxWordLength={maxWordLength}
+              />
+            </Route>
+          </Switch>
+        </div>
       </div>
     </Router>
   );
