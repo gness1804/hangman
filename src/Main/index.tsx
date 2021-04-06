@@ -90,8 +90,10 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
       )}
       {!loading && (
         <div className="main-container">
-          <div className="main-top-items-container">
-            <p>You have {totalGuesses - failedLetters.length} guesses left.</p>
+          <div className="main-top-items-container dark">
+            <p className="main-total-guesses">
+              You have {totalGuesses - failedLetters.length} guesses left.
+            </p>
             <div className="main-inputs-container">
               <label
                 htmlFor="letterInput"
@@ -124,7 +126,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
               ))}
             </div>
           </div>
-          <div className="main-bottom-items-container">
+          <div className="main-bottom-items-container light">
             <button
               onClick={getWord}
               className="main-new-word-button utility-button"

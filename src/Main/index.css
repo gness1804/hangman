@@ -12,6 +12,12 @@
 
 .main-top-items-container {
   margin-bottom: 3rem;
+  padding: 3rem;
+}
+
+.main-total-guesses {
+  font-size: 2rem;
+  font-style: italic;
 }
 
 .main-inputs-container {
@@ -37,8 +43,17 @@
   margin: 2rem 0;
 }
 
+.main-bottom-items-container {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-new-word-button {
   margin-bottom: 1rem;
+  width: fit-content;
 }
 
 .main-options-link {
