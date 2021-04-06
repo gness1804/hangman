@@ -89,7 +89,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
         <WordLine word={word} successfulLetters={successfulLetters} />
       )}
       {!loading && (
-        <div>
+        <div className="main-container">
           <div className="main-top-items-container">
             <p>You have {totalGuesses - failedLetters.length} guesses left.</p>
             <div className="main-inputs-container">

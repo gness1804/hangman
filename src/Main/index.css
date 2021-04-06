@@ -3,6 +3,13 @@
   flex-direction: column;
 }
 
+.main-container {
+  height: calc(100% - 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .main-top-items-container {
   margin-bottom: 3rem;
 }

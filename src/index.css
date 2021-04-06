@@ -41,7 +41,7 @@ button {
 
 /* the  principal component of a page, just below the header.*/
 .core-component > div {
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 8rem);
 }
 
 .utility-button {
