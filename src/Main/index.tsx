@@ -120,11 +120,17 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
               </button>
             </div>
             <p>Failed Letters:</p>
-            <div className="main-failed-letters-container">
-              {failedLetters.sort().map((_letter) => (
-                <div key={v4()}>{_letter}</div>
-              ))}
-            </div>
+            {failedLetters.length ? (
+              <div className="main-failed-letters-container">
+                {failedLetters.sort().map((_letter) => (
+                  <div key={v4()} className="main-failed-letter">
+                    {_letter}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>None yet! Let&apos;s go for the win!</p>
+            )}
           </div>
           <div className="main-bottom-items-container light">
             <button

@@ -5,4 +5,9 @@
   max-width: 60vw;
   margin: 0 auto 4rem;
   height: 2rem;
+  font-size: 2rem;
+}
+
+.word-line-letter {
+  color: #036575;
 }
