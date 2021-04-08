@@ -97,7 +97,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
             <div className="main-inputs-container">
               <label
                 htmlFor="letterInput"
-                className="main-inputs-container-label"
+                className="main-inputs-container-label main-central-part-label"
               >
                 Enter a letter:
               </label>
@@ -120,7 +120,9 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
               </button>
             </div>
             <div className="main-failed-letters-container">
-              <h3>Failed Letters:</h3>
+              <p className="main-central-part-label main-failed-letters-label">
+                Failed Letters:
+              </p>
               {failedLetters.length ? (
                 <div className="main-failed-letters-list">
                   {failedLetters.sort().map((_letter) => (

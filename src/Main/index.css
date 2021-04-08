@@ -32,8 +32,9 @@
   align-items: center;
 }
 
-.main-inputs-container-label,
-.main-inputs-container-input-field {
+.main-central-part-label {
+  font-size: 1.25rem;
+  line-height: 1.25;
   margin-bottom: 1rem;
 }
 
