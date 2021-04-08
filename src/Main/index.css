@@ -7,11 +7,21 @@
 
 .main-top-items-container {
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-top-items-container > *:not(:last-child) {
+  margin-bottom: 2rem;
 }
 
 .main-total-guesses {
   font-size: 2rem;
   font-style: italic;
+  font-weight: 600;
+  margin: 0;
 }
 
 .main-inputs-container {
@@ -31,7 +41,7 @@
   width: 50%;
 }
 
-.main-failed-letters-container {
+.main-failed-letters-list {
   display: flex;
   justify-content: center;
   margin: 2rem auto;
@@ -57,7 +67,7 @@
 }
 
 .main-new-word-button {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   width: fit-content;
 }
 

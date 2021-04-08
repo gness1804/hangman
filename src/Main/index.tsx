@@ -91,9 +91,9 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
       {!loading && (
         <div className="main-container">
           <div className="main-top-items-container dark">
-            <p className="main-total-guesses">
+            <h2 className="main-total-guesses">
               You have {totalGuesses - failedLetters.length} guesses left.
-            </p>
+            </h2>
             <div className="main-inputs-container">
               <label
                 htmlFor="letterInput"
@@ -119,18 +119,20 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
                 Verify Letter
               </button>
             </div>
-            <p>Failed Letters:</p>
-            {failedLetters.length ? (
-              <div className="main-failed-letters-container">
-                {failedLetters.sort().map((_letter) => (
-                  <div key={v4()} className="main-failed-letter">
-                    {_letter}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>None yet! Let&apos;s go for the win!</p>
-            )}
+            <div className="main-failed-letters-container">
+              <h3>Failed Letters:</h3>
+              {failedLetters.length ? (
+                <div className="main-failed-letters-list">
+                  {failedLetters.sort().map((_letter) => (
+                    <div key={v4()} className="main-failed-letter">
+                      {_letter}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>None yet! Let&apos;s go for the win!</p>
+              )}
+            </div>
           </div>
           <div className="main-bottom-items-container light">
             <button
