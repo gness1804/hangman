@@ -1,3 +1,18 @@
+.options {
+  padding: 1rem 0;
+}
+
+.options > * {
+  margin-bottom: 2rem;
+}
+
+.options-heading {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 0;
+}
+
 .options-total-guesses-container {
   margin-bottom: 1rem;
 }
@@ -9,5 +24,7 @@
 
 .options-back-home-link {
   display: block;
-  margin-top: 1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
 }

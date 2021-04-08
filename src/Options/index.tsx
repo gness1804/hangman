@@ -21,8 +21,8 @@ const Options = ({
   };
 
   return (
-    <div className="options">
-      <h2>Set Options</h2>
+    <div className="options dark">
+      <h2 className="options-heading">Set Options</h2>
       <div className="options-total-guesses-container">
         <label htmlFor="totalGuesses" className="options-total-guesses-label">
           Total Guesses
@@ -62,7 +62,9 @@ const Options = ({
           <option>8</option>
         </select>
       </div>
-      <button onClick={restoreDefaults}>Restore Defaults</button>
+      <button className="utility-button" onClick={restoreDefaults}>
+        Restore Defaults
+      </button>
       <Link className="options-back-home-link" to="/">
         Back to Game
       </Link>
