@@ -24,6 +24,16 @@ button {
   cursor: pointer;
 }
 
+a {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
 /* themes */
 .light {
   background-color: #fff;
@@ -33,6 +43,16 @@ button {
 .dark {
   background-color: #222;
   color: #fff;
+}
+
+.dark a {
+  color: #bcbec0;
+  border-bottom-color: #bcbec0;
+}
+
+.light a {
+  color: #036575;
+  border-bottom-color: #036575;
 }
 
 /* global classes */
