@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import './index.css';
 
 interface Props {
   word: string;
@@ -16,21 +17,17 @@ const Defeat = ({ word }: Props) => {
     }
   }, []);
 
-  if (!word) {
-    return (
-      <div className="defeat-no-word">
-        <h2>No word! Redirecting back home.</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="defeat dark">
-      <h2 className="defeat-heading">You Lose!</h2>
-      <p>
-        The word was: <em>{word}</em>.
-      </p>
-      <Link to="/">New Game</Link>
+      <h2 className="defeat-heading">
+        {word ? 'You Lose!' : 'No word! Redirecting back home.'}
+      </h2>
+      {word && (
+        <p className="defeat-word-display">
+          The word was: <em>{word}</em>.
+        </p>
+      )}
+      <Link to="/">{word ? 'New Game' : 'Back Home'}</Link>
     </div>
   );
 };

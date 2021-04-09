@@ -1,7 +1,14 @@
-.defeat-heading,
-.defeat-no-word h2 {
+.defeat {
+  padding: 1rem 0;
+}
+
+h2.defeat-heading {
   font-size: 2rem;
   font-style: italic;
   font-weight: 600;
   margin-top: 0;
+}
+
+.defeat-word-display {
+  margin-bottom: 1rem;
 }

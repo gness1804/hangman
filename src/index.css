@@ -65,7 +65,8 @@ select {
   border-bottom-color: #bcbec0;
 }
 
-.light a {
+.light a,
+a {
   color: #036575;
   border-bottom-color: #036575;
 }
