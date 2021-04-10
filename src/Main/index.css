@@ -40,6 +40,9 @@
 
 .main-inputs-container-input-field {
   width: 50%;
+  border-radius: 5px;
+  height: 2rem;
+  width: 2rem;
 }
 
 .main-failed-letters-list {
@@ -80,10 +83,7 @@
 @media (min-width: 750px) {
   .main-inputs-container {
     flex-direction: row;
-  }
-
-  .main-inputs-container-input-field {
-    width: auto;
+    justify-content: center;
   }
 
   .main-inputs-container-label,
