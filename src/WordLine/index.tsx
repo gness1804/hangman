@@ -12,7 +12,11 @@ const WordLine = ({ word, successfulLetters }: Props) => {
     <div className="word-line">
       {word.split('').map((letter) => {
         if (successfulLetters.includes(letter)) {
-          return <div key={v4()}>{letter}</div>;
+          return (
+            <div className="word-line-letter" key={v4()}>
+              {letter}
+            </div>
+          );
         } else {
           return <div key={v4()}>__</div>;
         }

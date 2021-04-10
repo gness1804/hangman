@@ -1,0 +1,22 @@
+.victory {
+  padding: 1rem 0;
+}
+
+.victory-heading {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.victory-play-again-message {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.victory-back-home-link {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}

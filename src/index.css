@@ -1,8 +1,6 @@
+/* global general styles */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +8,82 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid;
+}
+
+p,
+a {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.75;
+}
+
+input {
+  margin-bottom: 1rem;
+}
+
+select {
+  border: none;
+  border-bottom: 4px solid #e8e8e8;
+}
+
+@media (min-width: 750px) {
+  input {
+    margin-bottom: 0;
+  }
+}
+
+/* themes */
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #222;
+  color: #fff;
+}
+
+.dark a {
+  color: #bcbec0;
+  border-bottom-color: #bcbec0;
+}
+
+.light a,
+a {
+  color: #036575;
+  border-bottom-color: #036575;
+}
+
+/* global classes */
+
+/* the  principal component of a page, just below the header.*/
+.core-component > div {
+  height: calc(100vh - 8rem);
+}
+
+.utility-button {
+  border: 2px solid #12f1fc;
+  background-color: #12f1fc;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 0.75rem 1rem;
 }

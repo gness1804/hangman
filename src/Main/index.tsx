@@ -89,45 +89,64 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
         <WordLine word={word} successfulLetters={successfulLetters} />
       )}
       {!loading && (
-        <div>
-          <p>You have {totalGuesses - failedLetters.length} guesses left.</p>
-          <div className="main-inputs-container">
-            <label
-              htmlFor="letterInput"
-              className="main-inputs-container-label"
-            >
-              Enter a letter:
-            </label>
-            <input
-              id="letterInput"
-              type="text"
-              className="main-inputs-container-input-field"
-              size={1}
-              minLength={1}
-              maxLength={1}
-              onChange={(e) => setLetter(e.target.value.toLowerCase())}
-              onKeyDown={(e) => handleKeydown(e)}
-              value={letter}
-            />
+        <div className="main-container">
+          <div className="main-top-items-container dark">
+            <h2 className="main-total-guesses">
+              You have {totalGuesses - failedLetters.length} guesses left.
+            </h2>
+            <div className="main-inputs-container">
+              <label
+                htmlFor="letterInput"
+                className="main-inputs-container-label main-central-part-label"
+              >
+                Enter a letter:
+              </label>
+              <input
+                id="letterInput"
+                type="text"
+                className="main-inputs-container-input-field"
+                size={1}
+                minLength={1}
+                maxLength={1}
+                onChange={(e) => setLetter(e.target.value.toLowerCase())}
+                onKeyDown={(e) => handleKeydown(e)}
+                value={letter}
+              />
+              <button
+                onClick={verifyLetter}
+                className="main-inputs-container-verify-button utility-button"
+              >
+                Verify Letter
+              </button>
+            </div>
+            <div className="main-failed-letters-container">
+              <p className="main-central-part-label main-failed-letters-label">
+                Failed Letters:
+              </p>
+              {failedLetters.length ? (
+                <div className="main-failed-letters-list">
+                  {failedLetters.sort().map((_letter) => (
+                    <div key={v4()} className="main-failed-letter">
+                      {_letter}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>None yet! Let&apos;s go for the win!</p>
+              )}
+            </div>
+          </div>
+          <div className="main-bottom-items-container light">
             <button
-              onClick={verifyLetter}
-              className="main-inputs-container-verify-button"
+              onClick={getWord}
+              className="main-new-word-button utility-button"
             >
-              Verify Letter
+              New Word
             </button>
+            <Link className="main-options-link" to="/options">
+              Options
+            </Link>
           </div>
-          <p>Failed Letters:</p>
-          <div className="main-failed-letters-container">
-            {failedLetters.sort().map((_letter) => (
-              <div key={v4()}>{_letter}</div>
-            ))}
-          </div>
-          <button onClick={getWord} className="main-new-word-button">
-            New Word
-          </button>
-          <Link className="main-options-link" to="/options">
-            Options
-          </Link>
         </div>
       )}
     </div>

@@ -1,3 +1,29 @@
+.main-container {
+  height: calc(100% - 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-top-items-container {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-top-items-container > *:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.main-total-guesses {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0;
+}
+
 .main-inputs-container {
   display: flex;
   flex-direction: column;
@@ -6,24 +32,48 @@
   align-items: center;
 }
 
-.main-inputs-container-label,
-.main-inputs-container-input-field {
+.main-central-part-label {
+  font-size: 1.25rem;
+  line-height: 1.25;
   margin-bottom: 1rem;
 }
 
-.main-inputs-container-verify-button,
 .main-inputs-container-input-field {
   width: 50%;
+  border-radius: 5px;
+  height: 2rem;
+  width: 2rem;
 }
 
-.main-failed-letters-container {
+.main-failed-letters-list {
   display: flex;
   justify-content: center;
-  margin: 2rem 0 6rem;
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+  color: #ef3852;
+  font-size: 2rem;
+  background: #fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.main-failed-letter:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.main-bottom-items-container {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 .main-new-word-button {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  width: fit-content;
 }
 
 .main-options-link {
@@ -33,11 +83,7 @@
 @media (min-width: 750px) {
   .main-inputs-container {
     flex-direction: row;
-  }
-
-  .main-inputs-container-verify-button,
-  .main-inputs-container-input-field {
-    width: auto;
+    justify-content: center;
   }
 
   .main-inputs-container-label,
