@@ -29,6 +29,8 @@ function App() {
 
     sessionStorage.setItem('hangman-total-guesses', '6');
     setTotalGuesses(6);
+
+    window.location.reload();
   };
 
   return (
