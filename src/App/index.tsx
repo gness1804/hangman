@@ -23,6 +23,14 @@ function App() {
     return undefined;
   };
 
+  const restoreDefaults = (): void => {
+    sessionStorage.setItem('hangman-max-word-length', '6');
+    setMaxWordLength(6);
+
+    sessionStorage.setItem('hangman-total-guesses', '6');
+    setTotalGuesses(6);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -43,6 +51,7 @@ function App() {
                 setTotalGuesses={setTotalGuesses}
                 maxWordLength={getStoredMaxWordLength() || maxWordLength}
                 setMaxWordLength={setMaxWordLength}
+                restoreDefaults={restoreDefaults}
               />
             </Route>
             <Route path="/">

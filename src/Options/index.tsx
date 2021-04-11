@@ -7,6 +7,7 @@ interface Props {
   setTotalGuesses: Dispatch<SetStateAction<number>>;
   maxWordLength: number;
   setMaxWordLength: Dispatch<SetStateAction<number>>;
+  restoreDefaults: () => void;
 }
 
 const Options = ({
@@ -14,13 +15,8 @@ const Options = ({
   setTotalGuesses,
   maxWordLength,
   setMaxWordLength,
+  restoreDefaults,
 }: Props) => {
-  const restoreDefaults = (): void => {
-    // TODO: make this save to sessionStorage
-    setMaxWordLength(6);
-    setTotalGuesses(6);
-  };
-
   const _setMaxWordLength = (val: number): void => {
     sessionStorage.setItem('hangman-max-word-length', val.toString());
     setMaxWordLength(val);
