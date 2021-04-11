@@ -146,6 +146,9 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
             <Link className="main-options-link" to="/options">
               Options
             </Link>
+            <p className="main-reset-warning">
+              (Going here will reset the word and your guesses.)
+            </p>
           </div>
         </div>
       )}

@@ -78,6 +78,11 @@
 
 .main-options-link {
   display: block;
+  margin-bottom: 1rem;
+}
+
+.main-reset-warning {
+  font-style: italic;
 }
 
 @media (min-width: 750px) {
