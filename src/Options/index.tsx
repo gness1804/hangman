@@ -7,6 +7,7 @@ interface Props {
   setTotalGuesses: Dispatch<SetStateAction<number>>;
   maxWordLength: number;
   setMaxWordLength: Dispatch<SetStateAction<number>>;
+  restoreDefaults: () => void;
 }
 
 const Options = ({
@@ -14,10 +15,16 @@ const Options = ({
   setTotalGuesses,
   maxWordLength,
   setMaxWordLength,
+  restoreDefaults,
 }: Props) => {
-  const restoreDefaults = (): void => {
-    setMaxWordLength(6);
-    setTotalGuesses(6);
+  const _setMaxWordLength = (val: number): void => {
+    sessionStorage.setItem('hangman-max-word-length', val.toString());
+    setMaxWordLength(val);
+  };
+
+  const _setTotalGuesses = (val: number): void => {
+    sessionStorage.setItem('hangman-total-guesses', val.toString());
+    setTotalGuesses(val);
   };
 
   return (
@@ -30,7 +37,7 @@ const Options = ({
         <select
           id="totalGuesses"
           value={totalGuesses}
-          onChange={(e) => setTotalGuesses(+e.target.value)}
+          onChange={(e) => _setTotalGuesses(+e.target.value)}
         >
           <option>1</option>
           <option>2</option>
@@ -52,7 +59,7 @@ const Options = ({
         <select
           id="maxWordLength"
           value={maxWordLength}
-          onChange={(e) => setMaxWordLength(+e.target.value)}
+          onChange={(e) => _setMaxWordLength(+e.target.value)}
         >
           <option>3</option>
           <option>4</option>

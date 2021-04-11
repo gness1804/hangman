@@ -11,6 +11,28 @@ function App() {
   const [maxWordLength, setMaxWordLength] = useState(6);
   const [totalGuesses, setTotalGuesses] = useState(6);
 
+  const getStoredTotalGuesses = (): number | undefined => {
+    const res = sessionStorage.getItem('hangman-total-guesses');
+    if (res) return parseInt(res);
+    return undefined;
+  };
+
+  const getStoredMaxWordLength = (): number | undefined => {
+    const res = sessionStorage.getItem('hangman-max-word-length');
+    if (res) return parseInt(res);
+    return undefined;
+  };
+
+  const restoreDefaults = (): void => {
+    sessionStorage.setItem('hangman-max-word-length', '6');
+    setMaxWordLength(6);
+
+    sessionStorage.setItem('hangman-total-guesses', '6');
+    setTotalGuesses(6);
+
+    window.location.reload();
+  };
+
   return (
     <Router>
       <div className="App">
@@ -27,18 +49,19 @@ function App() {
             </Route>
             <Route path="/options">
               <Options
-                totalGuesses={totalGuesses}
+                totalGuesses={getStoredTotalGuesses() || totalGuesses}
                 setTotalGuesses={setTotalGuesses}
-                maxWordLength={maxWordLength}
+                maxWordLength={getStoredMaxWordLength() || maxWordLength}
                 setMaxWordLength={setMaxWordLength}
+                restoreDefaults={restoreDefaults}
               />
             </Route>
             <Route path="/">
               <Main
                 word={word}
                 setWord={setWord}
-                totalGuesses={totalGuesses}
-                maxWordLength={maxWordLength}
+                totalGuesses={getStoredTotalGuesses() || totalGuesses}
+                maxWordLength={getStoredMaxWordLength() || maxWordLength}
               />
             </Route>
           </Switch>
