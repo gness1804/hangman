@@ -16,6 +16,7 @@ const Options = ({
   setMaxWordLength,
 }: Props) => {
   const restoreDefaults = (): void => {
+    // TODO: make this save to sessionStorage
     setMaxWordLength(6);
     setTotalGuesses(6);
   };
@@ -30,6 +31,18 @@ const Options = ({
     setTotalGuesses(val);
   };
 
+  const getStoredTotalGuesses = (): string | undefined => {
+    const res = sessionStorage.getItem('hangman-total-guesses');
+    if (res) return res;
+    return undefined;
+  };
+
+  const getStoredMaxWordLength = (): string | undefined => {
+    const res = sessionStorage.getItem('hangman-max-word-length');
+    if (res) return res;
+    return undefined;
+  };
+
   return (
     <div className="options dark">
       <h2 className="options-heading">Set Options</h2>
@@ -39,7 +52,7 @@ const Options = ({
         </label>
         <select
           id="totalGuesses"
-          value={totalGuesses}
+          value={getStoredTotalGuesses() || totalGuesses}
           onChange={(e) => _setTotalGuesses(+e.target.value)}
         >
           <option>1</option>
@@ -61,7 +74,7 @@ const Options = ({
         </label>
         <select
           id="maxWordLength"
-          value={maxWordLength}
+          value={getStoredMaxWordLength() || maxWordLength}
           onChange={(e) => _setMaxWordLength(+e.target.value)}
         >
           <option>3</option>
