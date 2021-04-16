@@ -108,6 +108,14 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
         <h2 className="error">
           Something went wrong fetching your word! Please try again later.
         </h2>
+        <button
+          className="utility-button"
+          onClick={() => {
+            history.push('/');
+          }}
+        >
+          Try Again
+        </button>
       </div>
     );
   }
