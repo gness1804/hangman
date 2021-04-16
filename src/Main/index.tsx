@@ -15,6 +15,7 @@ interface Props {
 
 const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
   const [failedLetters, setFailedLetters] = useState<string[]>([]);
@@ -33,6 +34,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   });
 
   const getWord = async (): Promise<string | undefined> => {
+    setIsError(false);
     const isDebugMode = process.env.REACT_APP_MODE === 'debug';
     if (isDebugMode) {
       // enter in a test word to debug
@@ -62,6 +64,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
         setFailedLetters([]);
         setSuccessfulLetters([]);
       } catch (error) {
+        setIsError(true);
         return undefined;
       }
     }
@@ -98,6 +101,16 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   const handleKeydown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') verifyLetter();
   };
+
+  if (isError) {
+    return (
+      <div className="main">
+        <h2 className="error">
+          Something went wrong fetching your word! Please try again later.
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <div className="main">
