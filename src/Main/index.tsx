@@ -51,7 +51,7 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          process.env.WORD_ENDPOINT ||
+          process.env.REACT_APP_WORD_ENDPOINT ||
             `http://localhost:8080?maxWordLength=${maxWordLength}`,
         );
         setLoading(false);
