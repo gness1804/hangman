@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
+import { arraysSameValues } from '../utils/arraysReallyEqual';
 import './index.css';
 
 interface Props {
@@ -81,13 +82,13 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   };
 
   const checkGameStatus = (): void => {
-    // TODO: implement Cypress
+    const wordUniqueLetters = new Set([...word.split('')]);
     if (loading) return;
     if (failedLetters.length >= totalGuesses) {
       history.push('defeat');
     } else if (
       successfulLetters.length > 0 &&
-      successfulLetters.length === word.length
+      arraysSameValues(successfulLetters, Array.from(wordUniqueLetters))
     ) {
       history.push('/victory');
     }
