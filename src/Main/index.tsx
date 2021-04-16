@@ -32,21 +32,37 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   });
 
   const getWord = async (): Promise<string | undefined> => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        process.env.WORD_ENDPOINT ||
-          `http://localhost:8080?maxWordLength=${maxWordLength}`,
-      );
-      setLoading(false);
-      const {
-        data: { word },
-      } = res;
-      setWord(word.toLowerCase());
-      setFailedLetters([]);
-      setSuccessfulLetters([]);
-    } catch (error) {
-      return undefined;
+    const isDebugMode = process.env.REACT_APP_MODE === 'debug';
+    if (isDebugMode) {
+      // enter in a test word to debug
+      const word = prompt('Enter in a test word.');
+      if (word && typeof word === 'string' && word.length > 1) {
+        setWord(word.toLowerCase());
+        setFailedLetters([]);
+        setSuccessfulLetters([]);
+      } else {
+        alert(
+          'Error: you must enter in a valid word consisting of at least two letters. Please reload the page and try again.',
+        );
+      }
+    } else {
+      // a random word is generated for the user.
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          process.env.WORD_ENDPOINT ||
+            `http://localhost:8080?maxWordLength=${maxWordLength}`,
+        );
+        setLoading(false);
+        const {
+          data: { word },
+        } = res;
+        setWord(word.toLowerCase());
+        setFailedLetters([]);
+        setSuccessfulLetters([]);
+      } catch (error) {
+        return undefined;
+      }
     }
   };
 
