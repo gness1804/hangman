@@ -68,8 +68,9 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   };
 
   const verifyLetter = (): void => {
-    if (!letter) {
+    if (!letter || !letter.match(/[a-zA-Z]/)) {
       alert('Error: you must enter a letter.');
+      setLetter('');
       return;
     }
     if (word.includes(letter)) {
