@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
+import { arraysSameValues } from '../utils/arraysReallyEqual';
 import './index.css';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 
 const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
   const [failedLetters, setFailedLetters] = useState<string[]>([]);
@@ -32,27 +34,46 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   });
 
   const getWord = async (): Promise<string | undefined> => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        process.env.WORD_ENDPOINT ||
-          `http://localhost:8080?maxWordLength=${maxWordLength}`,
-      );
-      setLoading(false);
-      const {
-        data: { word },
-      } = res;
-      setWord(word.toLowerCase());
-      setFailedLetters([]);
-      setSuccessfulLetters([]);
-    } catch (error) {
-      return undefined;
+    setIsError(false);
+    const isDebugMode = process.env.REACT_APP_MODE === 'debug';
+    if (isDebugMode) {
+      // enter in a test word to debug
+      const word = prompt('Enter in a test word.');
+      if (word && typeof word === 'string' && word.length > 1) {
+        setWord(word.toLowerCase());
+        setFailedLetters([]);
+        setSuccessfulLetters([]);
+      } else {
+        alert(
+          'Error: you must enter in a valid word consisting of at least two letters. Please reload the page and try again.',
+        );
+      }
+    } else {
+      // a random word is generated for the user.
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          process.env.REACT_APP_WORD_ENDPOINT ||
+            `http://localhost:8080?maxWordLength=${maxWordLength}`,
+        );
+        setLoading(false);
+        const {
+          data: { word },
+        } = res;
+        setWord(word.toLowerCase());
+        setFailedLetters([]);
+        setSuccessfulLetters([]);
+      } catch (error) {
+        setIsError(true);
+        return undefined;
+      }
     }
   };
 
   const verifyLetter = (): void => {
-    if (!letter) {
+    if (!letter || !letter.match(/[a-zA-Z]/)) {
       alert('Error: you must enter a letter.');
+      setLetter('');
       return;
     }
     if (word.includes(letter)) {
@@ -65,13 +86,13 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   };
 
   const checkGameStatus = (): void => {
-    // TODO: implement Cypress
+    const wordUniqueLetters = new Set([...word.split('')]);
     if (loading) return;
     if (failedLetters.length >= totalGuesses) {
       history.push('defeat');
     } else if (
       successfulLetters.length > 0 &&
-      successfulLetters.length === word.length
+      arraysSameValues(successfulLetters, Array.from(wordUniqueLetters))
     ) {
       history.push('/victory');
     }
@@ -80,6 +101,24 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
   const handleKeydown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') verifyLetter();
   };
+
+  if (isError) {
+    return (
+      <div className="main">
+        <h2 className="error">
+          Something went wrong fetching your word! Please try again later.
+        </h2>
+        <button
+          className="utility-button"
+          onClick={() => {
+            history.push('/');
+          }}
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="main">

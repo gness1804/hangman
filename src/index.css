@@ -87,3 +87,8 @@ a {
   border-radius: 20px;
   padding: 0.75rem 1rem;
 }
+
+.error {
+  color: #f84d4d;
+  font-weight: 700;
+}
