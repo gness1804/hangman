@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../random-word-generator"
+		},
+		{
+			"path": "../../../../scripts"
 		}
 	],
 	"settings": {
