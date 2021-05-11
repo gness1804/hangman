@@ -1,0 +1,14 @@
+.nope {
+  padding: 1rem 0;
+}
+
+.nope > * {
+  margin-bottom: 2rem;
+}
+
+.nope-heading {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 0;
+}
