@@ -4,6 +4,7 @@ import Main from '../Main';
 import Victory from '../Victory';
 import Defeat from '../Defeat';
 import Options from '../Options';
+import Nope from '../Nope';
 import './index.css';
 
 function App() {
@@ -56,13 +57,16 @@ function App() {
                 restoreDefaults={restoreDefaults}
               />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Main
                 word={word}
                 setWord={setWord}
                 totalGuesses={getStoredTotalGuesses() || totalGuesses}
                 maxWordLength={getStoredMaxWordLength() || maxWordLength}
               />
+            </Route>
+            <Route path="*">
+              <Nope />
             </Route>
           </Switch>
         </div>
