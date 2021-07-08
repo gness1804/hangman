@@ -1,6 +1,6 @@
 {
   "name": "hangman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A classic word game. Try to guess all the letters before your guesses run out!",
   "private": true,
   "dependencies": {
