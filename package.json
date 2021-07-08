@@ -13,6 +13,7 @@
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
+    "auto-changelog": "^2.3.0",
     "axios": "^0.21.1",
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
@@ -33,7 +34,11 @@
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
     "prettier:check": "prettier --check src/*",
-    "prettier:write": "prettier --write src/*"
+    "prettier:write": "prettier --write src/*",
+    "changelog": "auto-changelog -p -l 8 && git add CHANGELOG.md",
+    "tag:patch": "npm version patch && npm run changelog",
+    "tag:minor": "npm version minor && npm run changelog",
+    "tag:major": "npm version major && npm run changelog"
   },
   "pre-commit": [
     "prettier:check",
