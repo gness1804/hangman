@@ -1,6 +1,7 @@
 {
   "name": "hangman",
   "version": "1.0.0",
+  "description": "A classic word game. Try to guess all the letters before your guesses run out!",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",

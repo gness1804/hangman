@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Hangman!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> A classic word game. Try to guess all the letters before your guesses run out!
 
-## Available Scripts
+## Install
 
-In the project directory, you can run:
+```
+npx degit gness1804/hangman
+```
+...Or fork or clone down the traditional way. See [https://github.community/t/the-difference-between-forking-and-cloning-a-repository/10189](https://github.community/t/the-difference-between-forking-and-cloning-a-repository/10189)
 
-### `yarn start`
+The project is a monorepo consisting of the core app, created from [Create React App](https://github.com/facebook/create-react-app), and a server child directory. In the project root, you'll need to:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install OR yarn install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+cd server
+npm install OR yarn install
+```
 
-### `yarn test`
+## Usage
+Simply run the startup scripts in both the root and server using `npm start` or `yarn start`. This should start up the React app and the server, and the React app should now be usable.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### GAME PLAY
+Enter a letter into the box. It will either appear on the board, if it is in the word, or appear in red below the box if not. The latter case will reduce your available guesses by one. Reveal the entire word before running out of guesses to win!
 
-### `yarn build`
+#### NEW WORD
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Get a new word by clicking on the "NEW WORD" button. This will also reset your guesses. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### OPTIONS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Click on the "Options" link near the bottom of the game screen to adjust the following options:
 
-### `yarn eject`
+* Total Guesses: 1-8
+* Max Word Length: 3-8
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+There are also victory and defeat screens which are pretty self-explanatory.
+ 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Changelog
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[❯ Read the changelog here →](CHANGELOG.md)
