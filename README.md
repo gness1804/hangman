@@ -2,6 +2,8 @@
 
 > A classic word game. Try to guess all the letters before your guesses run out!
 
+![Main screen](https://github.com/gness1804/hangman/blob/main/assets/main-screen.png)
+
 ## Install
 
 ```
