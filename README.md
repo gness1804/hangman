@@ -42,4 +42,4 @@ There are also victory and defeat screens which are pretty self-explanatory.
 
 ## Changelog
 
-[❯ Read the changelog here →](CHANGELOG.md)
+[❯ Read the changelog here →](https://github.com/gness1804/hangman/blob/main/CHANGELOG.md)
