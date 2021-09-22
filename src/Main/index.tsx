@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios';
 import { v4 } from 'uuid';
 import WordLine from '../WordLine';
 import { arraysSameValues } from '../utils/arraysReallyEqual';
 import './index.css';
+import { WordService } from '../services/wordService';
 
 interface Props {
   word: string;
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
-  const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [letter, setLetter] = useState('');
   const [successfulLetters, setSuccessfulLetters] = useState<string[]>([]);
@@ -51,16 +50,10 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
     } else {
       // a random word is generated for the user.
       try {
-        setLoading(true);
-        const res = await axios.get(
-          process.env.REACT_APP_WORD_ENDPOINT ||
-            `http://localhost:8080?maxWordLength=${maxWordLength}`,
-        );
-        setLoading(false);
-        const {
-          data: { word },
-        } = res;
-        setWord(word.toLowerCase());
+        const wordService = new WordService(maxWordLength);
+        wordService.setNewWord();
+        const _word = wordService.word;
+        setWord(_word.toLowerCase());
         setFailedLetters([]);
         setSuccessfulLetters([]);
       } catch (error) {
@@ -87,7 +80,6 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
 
   const checkGameStatus = (): void => {
     const wordUniqueLetters = new Set([...word.split('')]);
-    if (loading) return;
     if (failedLetters.length >= totalGuesses) {
       history.push('defeat');
     } else if (
@@ -122,75 +114,69 @@ const Main = ({ word, setWord, totalGuesses, maxWordLength }: Props) => {
 
   return (
     <div className="main">
-      {loading ? (
-        <p>Retrieving your word...</p>
-      ) : (
-        <WordLine word={word} successfulLetters={successfulLetters} />
-      )}
-      {!loading && (
-        <div className="main-container">
-          <div className="main-top-items-container dark">
-            <h2 className="main-total-guesses">
-              You have {totalGuesses - failedLetters.length} guesses left.
-            </h2>
-            <div className="main-inputs-container">
-              <label
-                htmlFor="letterInput"
-                className="main-inputs-container-label main-central-part-label"
-              >
-                Enter a letter:
-              </label>
-              <input
-                id="letterInput"
-                type="text"
-                className="main-inputs-container-input-field"
-                size={1}
-                minLength={1}
-                maxLength={1}
-                onChange={(e) => setLetter(e.target.value.toLowerCase())}
-                onKeyDown={(e) => handleKeydown(e)}
-                value={letter}
-              />
-              <button
-                onClick={verifyLetter}
-                className="main-inputs-container-verify-button utility-button"
-              >
-                Verify Letter
-              </button>
-            </div>
-            <div className="main-failed-letters-container">
-              <p className="main-central-part-label main-failed-letters-label">
-                Failed Letters:
-              </p>
-              {failedLetters.length ? (
-                <div className="main-failed-letters-list">
-                  {failedLetters.sort().map((_letter) => (
-                    <div key={v4()} className="main-failed-letter">
-                      {_letter}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p>None yet! Let&apos;s go for the win!</p>
-              )}
-            </div>
-          </div>
-          <div className="main-bottom-items-container light">
-            <button
-              onClick={getWord}
-              className="main-new-word-button utility-button"
+      <WordLine word={word} successfulLetters={successfulLetters} />
+      <div className="main-container">
+        <div className="main-top-items-container dark">
+          <h2 className="main-total-guesses">
+            You have {totalGuesses - failedLetters.length} guesses left.
+          </h2>
+          <div className="main-inputs-container">
+            <label
+              htmlFor="letterInput"
+              className="main-inputs-container-label main-central-part-label"
             >
-              New Word
+              Enter a letter:
+            </label>
+            <input
+              id="letterInput"
+              type="text"
+              className="main-inputs-container-input-field"
+              size={1}
+              minLength={1}
+              maxLength={1}
+              onChange={(e) => setLetter(e.target.value.toLowerCase())}
+              onKeyDown={(e) => handleKeydown(e)}
+              value={letter}
+            />
+            <button
+              onClick={verifyLetter}
+              className="main-inputs-container-verify-button utility-button"
+            >
+              Verify Letter
             </button>
-            <Link className="main-options-link" to="/options">
-              Options
-            </Link>
-            <p className="main-reset-warning">
-              (Going here will reset the word and your guesses.)
+          </div>
+          <div className="main-failed-letters-container">
+            <p className="main-central-part-label main-failed-letters-label">
+              Failed Letters:
             </p>
+            {failedLetters.length ? (
+              <div className="main-failed-letters-list">
+                {failedLetters.sort().map((_letter) => (
+                  <div key={v4()} className="main-failed-letter">
+                    {_letter}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>None yet! Let&apos;s go for the win!</p>
+            )}
           </div>
         </div>
-      )}
+        <div className="main-bottom-items-container light">
+          <button
+            onClick={getWord}
+            className="main-new-word-button utility-button"
+          >
+            New Word
+          </button>
+          <Link className="main-options-link" to="/options">
+            Options
+          </Link>
+          <p className="main-reset-warning">
+            (Going here will reset the word and your guesses.)
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
