@@ -4,6 +4,10 @@
 
 ![Main screen](https://github.com/gness1804/hangman/blob/main/assets/main-screen.png)
 
+## Check it out live!
+
+[https://hangman-65460.web.app/](https://hangman-65460.web.app/)
+
 ## Install
 
 ```
@@ -30,7 +34,7 @@ Enter a letter into the box. It will either appear on the board, if it is in the
 
 #### NEW WORD
 
-Get a new word by clicking on the "NEW WORD" button. This will also reset your guesses. 
+Get a new word by clicking on the "NEW WORD" button. This will also reset your guesses.
 
 #### OPTIONS
 
@@ -40,7 +44,7 @@ Click on the "Options" link near the bottom of the game screen to adjust the fol
 * Max Word Length: 3-8
 
 There are also victory and defeat screens which are pretty self-explanatory.
- 
+
 
 ## Changelog
 
